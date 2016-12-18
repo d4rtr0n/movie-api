@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 	var time;
 
-	$("#movie-title").on('keyup',function(){
+	$("#movie-title").on('keyup', function(){
 		var film = $('#movie-title').val();
 		
 	if (film.length < 2){
@@ -18,26 +18,21 @@ $(document).ready(function(){
 
 			$.ajax({   
 				method: 'GET',
-				url: request,  
-				dataType: "json",   
+				url: request,   
 				
 				success: function(response) {     
 					var movies = response.Search;
-					for(var i = 0; i < movies.length; i++){
-						resultsMovie.append('<tr><td>' <img src=' + movies[i].Poster + '/> </td>' +
-	                                    '<td>' + movies[i].Title + '</td>' +
-	                                    '<td>' + movies[i].Year + '</td></tr>');
-						},
+					for(var i = 0; i <= movies.length - 1; i++){
+						resultsMovie.append('<tr><td>' <img src=' + movies[i].Poster + '> '</td>' + '<td>' + movies[i].Title + '</td>' + '<td>' + movies[i].Year + '</td></tr>');
+						}
+					}
 
-
-					error: function(error) {
+				error: function(error) {
 	                        console.error('@ERROR', error);
 	                    },
 	                }); 
 	            }, 1000); 
 					};
-			};
-		});
 });
 
 //had a really hard time getting this to work myself
