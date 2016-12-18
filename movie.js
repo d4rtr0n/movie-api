@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	
 	var time;
 
 	$("#movie-title").on('keyup',(){
@@ -11,29 +11,33 @@ $(document).ready(function(){
 		$("#results").html("");
 			var request = "http://www.omdbapi.com/?s=" + film + "&plot=full&r=json"; //this variable should get the info from the link			
 	
-	clearTimeout(time);
-	time = setTimeout(function(){
+		var resultsMovie = $("#resultsMovie"); 	//assigned for table that will display results after search
 
-		$.ajax({   
-			method: 'GET',
-			url: request,  
-			dataType: "json",   
-			
-			success: function(response) {     
-				var movies = response.Search;
-				for(var i = 0; i < movies.length; i++){
-					results-movie.append('<tr><td>' <img src=' + movies[i].Poster + '/> </td>' +
-                                    '<td>' + movies[i].Title + '</td>' +
-                                    '<td>' + movies[i].Year + '</td></tr>')
-					} 
-				}
-			});
-	})
-	}	
+		clearTimeout(time);
+		time = setTimeout(function(){
 
-	})
+			$.ajax({   
+				method: 'GET',
+				url: request,  
+				dataType: "json",   
+				
+				success: function(response) {     
+					var movies = response.Search;
+					for(var i = 0; i < movies.length; i++){
+						resultsMovie.append('<tr><td>' <img src=' + movies[i].Poster + '/> </td>' +
+	                                    '<td>' + movies[i].Title + '</td>' +
+	                                    '<td>' + movies[i].Year + '</td></tr>');
+						},
 
 
+					error: function(error) {
+	                        console.error('@ERROR', error);
+	                    },
+	                }); 
+	            }, 1000); 
+					};
+			};
+		});
 });
 
 //had a really hard time getting this to work myself
