@@ -6,7 +6,7 @@ $(document).ready(function(){
 		var film = $('#movie-title').val();
 		
 	if (film.length < 2){
-		$("#results").html("Cannot compute - enter at least 2 characters to print a result.")
+		$("#results").html("Cannot compute - enter at least 2 characters to print a result.");
 	}	else {
 		$("#results").html("");
 			var request = "http://www.omdbapi.com/?s=" + film + "&plot=full&r=json"; //this variable should get the info from the link			
