@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 	var time;
 
-	$("#movie-title").on('keyup',(){
+	$("#movie-title").on('keyup',function(){
 		var film = $('#movie-title').val();
 		
 	if (film.length < 2){
