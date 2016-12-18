@@ -1,5 +1,16 @@
 $(document).ready(function(){
 
+	$("#movie-title").on('keyup',(){
+		var film = $('#movie-title').val();
+		
+	if (film.length < 2){
+		$("#results").html("Cannot compute - enter at least 2 characters to print a result.")
+	}	else {
+		$("#results").html("");
+			var request = "http://www.omdbapi.com/?s=" + film + "&plot=full&r=json"; //this variable should get the info from the link			
+	}	
+
+	})
 var film = document.getElementById("movie").value; //this variable should get the input text
 var request = "http://www.omdbapi.com/?s=" + film + "&plot=full&r=json"; //this variable should get the info from the link
 	document.getElementById("getMovie").onclick = function(){	//this should trigger when the search button is clicked
@@ -21,11 +32,6 @@ $.ajax({
 	});
 });
 
-//i tried the append function to list out the things that would
-//be included in the search but it didn't work
-//i know this will be an incomplete but i'm submitting now anyway
-//honestly being sick at the beginning of november set me back a lot
-//so just trying to catch up but then also trying to catch up with life
-//i don't need to explain myself just want y'all to know i'm not slacking cause i'm a slacker
-//life is just busy and my time management skills are currently lacking
-//loooooooool
+//had a really hard time getting this to work myself
+//used Alex's code as a basis - i'm getting a better understanding of how ajax works
+//but still don't really understand how to write this code myself
