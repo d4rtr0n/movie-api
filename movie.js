@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	var time;
+
 	$("#movie-title").on('keyup',(){
 		var film = $('#movie-title').val();
 		
@@ -8,30 +10,33 @@ $(document).ready(function(){
 	}	else {
 		$("#results").html("");
 			var request = "http://www.omdbapi.com/?s=" + film + "&plot=full&r=json"; //this variable should get the info from the link			
+	
+	clearTimeout(time);
+	time = setTimeout(function(){
+
+		$.ajax({   
+			method: 'GET',
+			url: request,  
+			dataType: "json",   
+			
+			success: function(response) {     
+				var movies = response.Search;
+				for(var i = 0; i < movies.length; i++){
+					results-movie.append('<tr><td>' <img src=' + movies[i].Poster + '/> </td>' +
+                                    '<td>' + movies[i].Title + '</td>' +
+                                    '<td>' + movies[i].Year + '</td></tr>')
+					} 
+				}
+			});
+	})
 	}	
 
 	})
-var film = document.getElementById("movie").value; //this variable should get the input text
-var request = "http://www.omdbapi.com/?s=" + film + "&plot=full&r=json"; //this variable should get the info from the link
-	document.getElementById("getMovie").onclick = function(){	//this should trigger when the search button is clicked
-		document.getElementById("#results").innerHTML= movies; //i want this to give me the response results i'm trying to call from the api
-		};
 
-$.ajax({   
-	method: 'GET',
-	url: request,  
-	dataType: "json",   
-	
-	success: function(response) {     
-		var movies = response.Search;
-		for(var i = 0; i < movies.length; i++){
-			$("#results").html(movies[i].Title);   //need the i because we are going through the array of movies 
-			$("#poster").attr("src", movies[i].Poster); //this isn't showing up and i don't know why
-			} 
-		}
-	});
+
 });
 
 //had a really hard time getting this to work myself
 //used Alex's code as a basis - i'm getting a better understanding of how ajax works
 //but still don't really understand how to write this code myself
+//also going for functionality more than aesthetic ftr 
